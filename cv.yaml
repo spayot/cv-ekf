@@ -1,0 +1,8 @@
+name: cv
+dependencies:
+  - numpy
+  - matplotlib
+  - ipykernel
+  - pip
+  - pip:
+    - opencv-python

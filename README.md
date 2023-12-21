@@ -8,7 +8,7 @@ EKF works in two steps:
 
 
 - world: 2D map with 9 landmarks spread across a rectangle layout.
-- motion model: differential drive, using an odometer model $<x, y, \theta>$.
+- motion model: differential drive, using an odometer model $(x, y, \theta)$.
 - sensor data: for each time step, our agent collects data about the estimated distance and bearings from a subset of the above-mentioned landmarks. (note: we only )
 - observation model: range sensors only (not using bearings in the current implementation), showing the estimated distance from a subset of landmarks.
 
@@ -22,11 +22,11 @@ EKF works in two steps:
     - the code can therefore easily be extended to other motion / observation models. all you need is to implement the [`ObservationModel`](src/ekf/kalman.py) and/or [`MotionModel`](src/ekf/kalman.py).
 
 # Opportunities for improvement
-    
-    - [x] decouple models from EKF core implementation
-    - [ ] move to pytorch for higher efficiency
-    - [ ] turn into CLI allowing to control input data
-    - [ ] integrate bearings information to model
+
+- [x] decouple models from EKF core implementation
+- [ ] move to pytorch for higher efficiency
+- [ ] turn into CLI allowing to control input data
+- [ ] integrate bearings information to model
 
 
 # Outstanding questions

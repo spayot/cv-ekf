@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from src import ekf
 
-PAUSE_TIME = 0.01
+PAUSE_TIME = 0.02
 DATA_PATH = Path("data/")
 
 MAP_LIMITS = (-1.0, 12.0, 0.0, 10.0)
@@ -25,10 +25,10 @@ def main():
     print("Reading sensor data")
     sensor_readings = ekf.data.read_sensor_data(DATA_PATH / "sensor_data.dat")
 
-    Qt = np.array([[0.2, 0, 0], [0, 0.2, 0], [0, 0, 0.02]])
+    Qt = 2 * np.array([[0.2, 0, 0], [0, 0.2, 0], [0, 0, 0.02]])
     motion_model = ekf.motion.DifferentialDriveModel(Qt)
 
-    observation_model = ekf.observation.RangeSensorModel()
+    observation_model = ekf.observation.RangeSensorModel(rt_variance=0.5)
 
     # initialize belief
     mu = np.array([0.0, 0.0, 0.0])

@@ -4,6 +4,9 @@ import numpy as np
 
 
 class RangeSensorModel:
+    def __init__(self, rt_variance: float = 0.5) -> None:
+        self.rt_variance = rt_variance
+
     def expected_distance(self, x, observed_landmarks) -> np.ndarray:
         return np.linalg.norm(x[:2] - observed_landmarks, axis=1)
 
@@ -18,4 +21,4 @@ class RangeSensorModel:
         return Ht / self.expected_distance(mu, observed_landmarks).reshape(-1, 1)
 
     def Rt(self, observed_landmarks) -> np.ndarray:
-        return 0.5 * np.eye(len(observed_landmarks))
+        return self.rt_variance * np.eye(len(observed_landmarks))
